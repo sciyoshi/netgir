@@ -7,7 +7,7 @@ namespace GIRepository
 	{
 		public Repository(IntPtr raw) : base(raw) {}
 
-		public Repository() : base(gi_repository_get_default()) {}
+		public Repository() : base(g_irepository_get_default()) {}
 
 		public static Repository GetDefault()
 		{
@@ -17,13 +17,13 @@ namespace GIRepository
 		public static void PrependSearchPath(string directory)
 		{
 			IntPtr native_directory = GLib.Marshaller.StringToPtrGStrdup(directory);
-			gi_repository_prepend_search_path(native_directory);
+			g_irepository_prepend_search_path(native_directory);
 			GLib.Marshaller.Free(native_directory);
 		}
 
 		public static Array GetSearchPath()
 		{
-			IntPtr path = gi_repository_get_search_path();
+			IntPtr path = g_irepository_get_search_path();
 			return GLib.Marshaller.ListPtrToArray(path, typeof(GLib.SList), false, false, typeof(GLib.ListBase.FilenameString));
 		}
 
@@ -31,7 +31,7 @@ namespace GIRepository
 		{
 			IntPtr error;
 			IntPtr native_arg = GLib.Marshaller.StringToPtrGStrdup(arg);
-			bool ret = gi_repository_dump(native_arg, out error);
+			bool ret = g_irepository_dump(native_arg, out error);
 			GLib.Marshaller.Free(native_arg);
 			if (!ret)
 				throw new GLib.GException(error);
@@ -40,7 +40,7 @@ namespace GIRepository
 		public string LoadTypelib(Typelib typelib, RepositoryLoadFlags flags)
 		{
 			IntPtr error;
-			IntPtr ret = gi_repository_load_typelib(Handle, typelib.handle, flags, out error);
+			IntPtr ret = g_irepository_load_typelib(Handle, typelib.handle, flags, out error);
 			if (error != IntPtr.Zero)
 				throw new GLib.GException (error);
 			return GLib.Marshaller.Utf8PtrToString(ret);
@@ -55,7 +55,7 @@ namespace GIRepository
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
 			IntPtr native_version = GLib.Marshaller.StringToPtrGStrdup(version);
-			bool ret = gi_repository_is_registered(Handle, native_namespace, native_version);
+			bool ret = g_irepository_is_registered(Handle, native_namespace, native_version);
 			GLib.Marshaller.Free(native_namespace);
 			GLib.Marshaller.Free(native_version);
 			return ret;
@@ -65,7 +65,7 @@ namespace GIRepository
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
 			IntPtr native_name = GLib.Marshaller.StringToPtrGStrdup(name);
-			IntPtr ret = gi_repository_find_by_name(Handle, native_namespace, native_name);
+			IntPtr ret = g_irepository_find_by_name(Handle, native_namespace, native_name);
 			GLib.Marshaller.Free(native_namespace);
 			GLib.Marshaller.Free(native_name);
 			return BaseInfo.GetOpaque(ret, true);
@@ -86,7 +86,7 @@ namespace GIRepository
 			IntPtr error;
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
 			IntPtr native_version = GLib.Marshaller.StringToPtrGStrdup(version);
-			IntPtr ret = gi_repository_require(Handle, native_namespace, native_version, flags, out error);
+			IntPtr ret = g_irepository_require(Handle, native_namespace, native_version, flags, out error);
 			GLib.Marshaller.Free(native_namespace);
 			GLib.Marshaller.Free(native_version);
 			if (error != IntPtr.Zero)
@@ -97,25 +97,25 @@ namespace GIRepository
 		public string[] GetDependencies(string namespace_)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			string[] ret = GLib.Marshaller.PtrToStringArrayGFree(gi_repository_get_dependencies(Handle, native_namespace));
+			string[] ret = GLib.Marshaller.PtrToStringArrayGFree(g_irepository_get_dependencies(Handle, native_namespace));
 			GLib.Marshaller.Free(native_namespace);
 			return ret;
 		}
 
 		public string[] GetLoadedNamespaces()
 		{
-			return GLib.Marshaller.PtrToStringArrayGFree(gi_repository_get_loaded_namespaces(Handle));
+			return GLib.Marshaller.PtrToStringArrayGFree(g_irepository_get_loaded_namespaces(Handle));
 		}
 
 		public BaseInfo FindByGType(GLib.GType gtype)
 		{
-			return BaseInfo.GetOpaque(gi_repository_find_by_gtype(Handle, gtype), true);
+			return BaseInfo.GetOpaque(g_irepository_find_by_gtype(Handle, gtype), true);
 		}
 
 		public int GetNInfos(string namespace_)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			int ret = gi_repository_get_n_infos(Handle, native_namespace);
+			int ret = g_irepository_get_n_infos(Handle, native_namespace);
 			GLib.Marshaller.Free(native_namespace);
 			return ret;
 		}
@@ -123,7 +123,7 @@ namespace GIRepository
 		public BaseInfo GetInfo(string namespace_, int index)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			IntPtr ret = gi_repository_get_info(Handle, native_namespace, index);
+			IntPtr ret = g_irepository_get_info(Handle, native_namespace, index);
 			GLib.Marshaller.Free(native_namespace);
 			return BaseInfo.GetOpaque(ret, true);
 		}
@@ -131,7 +131,7 @@ namespace GIRepository
 		public String GetTypelibPath(string namespace_)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			IntPtr ret = gi_repository_get_typelib_path(Handle, native_namespace);
+			IntPtr ret = g_irepository_get_typelib_path(Handle, native_namespace);
 			GLib.Marshaller.Free(native_namespace);
 			return GLib.Marshaller.Utf8PtrToString(ret);
 		}
@@ -139,7 +139,7 @@ namespace GIRepository
 		public String GetSharedLibrary(string namespace_)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			IntPtr ret = gi_repository_get_shared_library(Handle, native_namespace);
+			IntPtr ret = g_irepository_get_shared_library(Handle, native_namespace);
 			GLib.Marshaller.Free(native_namespace);
 			return GLib.Marshaller.Utf8PtrToString(ret);
 		}
@@ -147,66 +147,66 @@ namespace GIRepository
 		public String GetVersion(string namespace_)
 		{
 			IntPtr native_namespace = GLib.Marshaller.StringToPtrGStrdup(namespace_);
-			IntPtr ret = gi_repository_get_version(Handle, native_namespace);
+			IntPtr ret = g_irepository_get_version(Handle, native_namespace);
 			GLib.Marshaller.Free(native_namespace);
 			return GLib.Marshaller.Utf8PtrToString(ret);
 		}
 
 		public static new GLib.GType GType {
 			get {
-				return new GLib.GType(gi_repository_get_type());
+				return new GLib.GType(g_irepository_get_type());
 			}
 		}
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_type();
+		static extern IntPtr g_irepository_get_type();
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_default();
+		static extern IntPtr g_irepository_get_default();
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern void gi_repository_prepend_search_path(IntPtr directory);
+		static extern void g_irepository_prepend_search_path(IntPtr directory);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_search_path();
+		static extern IntPtr g_irepository_get_search_path();
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern bool gi_repository_dump(IntPtr arg, out IntPtr error);
+		static extern bool g_irepository_dump(IntPtr arg, out IntPtr error);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_load_typelib(IntPtr raw, IntPtr typelib, RepositoryLoadFlags flags, out IntPtr error);
+		static extern IntPtr g_irepository_load_typelib(IntPtr raw, IntPtr typelib, RepositoryLoadFlags flags, out IntPtr error);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern bool gi_repository_is_registered(IntPtr raw, IntPtr namespace_, IntPtr version);
+		static extern bool g_irepository_is_registered(IntPtr raw, IntPtr namespace_, IntPtr version);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_find_by_name(IntPtr raw, IntPtr namespace_, IntPtr name);
+		static extern IntPtr g_irepository_find_by_name(IntPtr raw, IntPtr namespace_, IntPtr name);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_require(IntPtr raw, IntPtr namespace_, IntPtr version, RepositoryLoadFlags flags, out IntPtr error);
+		static extern IntPtr g_irepository_require(IntPtr raw, IntPtr namespace_, IntPtr version, RepositoryLoadFlags flags, out IntPtr error);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_dependencies(IntPtr raw, IntPtr namespace_);
+		static extern IntPtr g_irepository_get_dependencies(IntPtr raw, IntPtr namespace_);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_loaded_namespaces(IntPtr raw);
+		static extern IntPtr g_irepository_get_loaded_namespaces(IntPtr raw);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_find_by_gtype(IntPtr raw, GLib.GType gtype);
+		static extern IntPtr g_irepository_find_by_gtype(IntPtr raw, GLib.GType gtype);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern int gi_repository_get_n_infos(IntPtr raw, IntPtr namespace_);
+		static extern int g_irepository_get_n_infos(IntPtr raw, IntPtr namespace_);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_info(IntPtr raw, IntPtr namespace_, int index);
+		static extern IntPtr g_irepository_get_info(IntPtr raw, IntPtr namespace_, int index);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_typelib_path(IntPtr raw, IntPtr namespace_);
+		static extern IntPtr g_irepository_get_typelib_path(IntPtr raw, IntPtr namespace_);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_shared_library(IntPtr raw, IntPtr namespace_);
+		static extern IntPtr g_irepository_get_shared_library(IntPtr raw, IntPtr namespace_);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_repository_get_version(IntPtr raw, IntPtr namespace_);
+		static extern IntPtr g_irepository_get_version(IntPtr raw, IntPtr namespace_);
 	}
 }

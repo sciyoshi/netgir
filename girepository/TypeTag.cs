@@ -68,32 +68,8 @@ namespace GIRepository
 			typeof(Exception)
 		};
 
-		private static System.Reflection.FieldInfo[] Fields = new System.Reflection.FieldInfo[] {
-			null,
-			typeof(Argument).GetField("VBoolean"),
-			typeof(Argument).GetField("VInt8"),
-			typeof(Argument).GetField("VUInt8"),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			typeof(Argument).GetField(""),
-			
-		};
-			
-		
 		public static Type FromTag(TypeTag tag)
 		{
-			
 			return Mapping[(int) tag];
 		}
 	}

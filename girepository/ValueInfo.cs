@@ -8,10 +8,10 @@ namespace GIRepository
 		public ValueInfo(IntPtr raw) : base(raw) { }
 
 		public long Value {
-			get { return gi_value_info_get_value(Handle); }
+			get { return g_value_info_get_value(Handle); }
 		}
 		
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern long gi_value_info_get_value(IntPtr raw);
+		static extern long g_value_info_get_value(IntPtr raw);
 	}
 }

@@ -7,40 +7,40 @@ namespace GIRepository
 	public struct Argument
 	{
 		[FieldOffset(0)]
-		public bool VBoolean;
+		public bool Boolean;
 		[FieldOffset(0)]
-		public byte VInt8;
+		public byte Int8;
 		[FieldOffset(0)]
-		public sbyte VUInt8;
+		public sbyte UInt8;
 		[FieldOffset(0)]
-		public short VInt16;
+		public short Int16;
 		[FieldOffset(0)]
-		public ushort VUInt16;
+		public ushort UInt16;
 		[FieldOffset(0)]
-		public int VInt32;
+		public int Int32;
 		[FieldOffset(0)]
-		public uint VUInt32;
+		public uint UInt32;
 		[FieldOffset(0)]
-		public long VInt64;
+		public long Int64;
 		[FieldOffset(0)]
-		public ulong VUInt64;
+		public ulong UInt64;
 		[FieldOffset(0)]
-		public float VFloat;
+		public float Float;
 		[FieldOffset(0)]
-		public double VDouble;
+		public double Double;
 		[FieldOffset(0)]
-		public IntPtr VInt;
+		public int Int;
 		[FieldOffset(0)]
-		public UIntPtr VUInt;
+		public uint UInt;
 		[FieldOffset(0)]
-		public long VLong;
+		public long Long;
 		[FieldOffset(0)]
-		public ulong VULong;
+		public ulong ULong;
 		[FieldOffset(0)]
-		public IntPtr VSSize;
+		public int SSize;
 		[FieldOffset(0)]
-		public UIntPtr VSize;
+		public uint Size;
 		[FieldOffset(0)]
-		public IntPtr VPointer;
+		public IntPtr Pointer;
 	}
 }

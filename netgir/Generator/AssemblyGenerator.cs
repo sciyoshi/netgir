@@ -27,7 +27,7 @@ namespace NetGir.Generator
 
 			ModuleBuilder mod = b.DefineDynamicModule(namespace_, namespace_ + ".dll");
 
-			TypeBuilder glob = mod.DefineType("Globals", TypeAttributes.Class | TypeAttributes.Sealed);
+			TypeBuilder glob = mod.DefineType("Globals", TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.Abstract | TypeAttributes.Sealed | TypeAttributes.BeforeFieldInit);
 			
 			for (int i = 0; i < repository.GetNInfos(namespace_); i++) {
 				BaseInfo info = repository.GetInfo(namespace_, i);
@@ -35,8 +35,10 @@ namespace NetGir.Generator
 				if (info is ConstantInfo) {
 					ConstantInfo c = info as ConstantInfo;
 					Console.WriteLine("doing {0}", c.Name);
-					var f = glob.DefineField(c.Name, TypeTagMapping.FromTag(c.Type.Tag), FieldAttributes.InitOnly);
-					
+					var f = glob.DefineField(c.Name, TypeTagMapping.FromTag(c.Type.Tag), FieldAttributes.Static | FieldAttributes.Literal);
+					object q = c.GetValue();
+					Console.WriteLine("with {0}, {1}, {2}", c.Type.Tag, TypeTagMapping.FromTag(c.Type.Tag), q);
+					f.SetConstant(q);
 				}
 			}
 			glob.CreateType();

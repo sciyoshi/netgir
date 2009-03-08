@@ -33,22 +33,22 @@ namespace GIRepository
 
 		protected override void Ref(IntPtr raw)
 		{
-			gi_base_info_ref(raw);
+			g_base_info_ref(raw);
 		}
 
 		protected override void Unref(IntPtr raw)
 		{
-			gi_base_info_unref(raw);
+			g_base_info_unref(raw);
 		}
 
 		protected override void Free(IntPtr raw)
 		{
-			gi_base_info_unref(raw);
+			g_base_info_unref(raw);
 		}
 
 		protected override GLib.Opaque Copy(IntPtr raw)
 		{
-			gi_base_info_ref(raw);
+			g_base_info_ref(raw);
 			return this;
 		}
 
@@ -56,27 +56,27 @@ namespace GIRepository
 		{
 			Type type;
 
-			if (!InfoTypeMappings.TryGetValue(gi_base_info_get_type(raw), out type))
+			if (!InfoTypeMappings.TryGetValue(g_base_info_get_type(raw), out type))
 				return null;
 
 			return (BaseInfo) GetOpaque(raw, type, owned);
 		}
 
 		public string Name {
-			get { return GLib.Marshaller.Utf8PtrToString(gi_base_info_get_name(Handle)); }
+			get { return GLib.Marshaller.Utf8PtrToString(g_base_info_get_name(Handle)); }
 		}
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_base_info_ref(IntPtr raw);
+		static extern IntPtr g_base_info_ref(IntPtr raw);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern void gi_base_info_unref(IntPtr raw);
+		static extern void g_base_info_unref(IntPtr raw);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern InfoType gi_base_info_get_type(IntPtr raw);
+		static extern InfoType g_base_info_get_type(IntPtr raw);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern IntPtr gi_base_info_get_name(IntPtr raw);
+		static extern IntPtr g_base_info_get_name(IntPtr raw);
 	}
 
 	public class UnresolvedInfo : BaseInfo { public UnresolvedInfo(IntPtr raw) : base(raw) { } }
