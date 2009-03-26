@@ -34,11 +34,18 @@ namespace NetGir.Generator
 
 				if (info is ConstantInfo) {
 					ConstantInfo c = info as ConstantInfo;
-					Console.WriteLine("doing {0}", c.Name);
 					var f = glob.DefineField(c.Name, TypeTagMapping.FromTag(c.Type.Tag), FieldAttributes.Static | FieldAttributes.Literal);
 					object q = c.GetValue();
-					Console.WriteLine("with {0}, {1}, {2}", c.Type.Tag, TypeTagMapping.FromTag(c.Type.Tag), q);
 					f.SetConstant(q);
+				} else if (info is ObjectInfo) {
+					ObjectInfo c = info as ObjectInfo;
+					TypeBuilder x = mod.DefineType(c.Name, TypeAttributes.AutoClass | TypeAttributes.AnsiClass | TypeAttributes.Public | TypeAttributes.Class);
+					x.SetParent(Assembly.Load(c.Parent.Typelib.Namespace).GetType(c.Name));
+					Console.WriteLine("doing {0}", c.Name);
+					Console.WriteLine("parent: {0}", c.Parent.Name);
+					Console.WriteLine("parent: {0}", c.Parent.TypeInit);
+					Console.WriteLine("parent: {0}", c.Parent.Typelib);
+					x.CreateType();
 				}
 			}
 			glob.CreateType();

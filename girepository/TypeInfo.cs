@@ -7,7 +7,7 @@ namespace GIRepository
 	{
 		public TypeInfo(IntPtr raw) : base(raw)
 		{
-			ErrorDomains = new ErrorDomainCollection(this);
+			ErrorDomains = new CollectionProperty<ErrorDomainInfo>(this, g_type_info_get_n_error_domains, g_type_info_get_error_domain);
 		}
 
 		public bool IsPointer {
@@ -39,21 +39,7 @@ namespace GIRepository
 			get { return g_type_info_is_zero_terminated(Handle); }
 		}
 
-		public class ErrorDomainCollection {
-			readonly TypeInfo info;
-			internal ErrorDomainCollection(TypeInfo info)
-			{
-				this.info = info;
-			}
-			public ErrorDomainInfo this[int n] {
-				get { return g_type_info_get_error_domain(info.Handle, n); }
-			}
-			public int Count {
-				get { return g_type_info_get_n_error_domains(info.Handle); }
-			}
-		}
-
-		public ErrorDomainCollection ErrorDomains { get; private set; }
+		public CollectionProperty<ErrorDomainInfo> ErrorDomains { get; private set; }
 
 		public object GetValue(Argument arg, int size)
 		{
@@ -109,6 +95,6 @@ namespace GIRepository
 		static extern int g_type_info_get_n_error_domains(IntPtr raw);
 
 		[DllImport("libgirepository-1.0-0.dll")]
-		static extern ErrorDomainInfo g_type_info_get_error_domain(IntPtr raw, int n);
+		static extern IntPtr g_type_info_get_error_domain(IntPtr raw, int n);
 	}
 }

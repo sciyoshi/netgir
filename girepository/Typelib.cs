@@ -26,10 +26,13 @@ namespace GIRepository
 			return new Typelib(g_typelib_new_from_const_memory(new IntPtr(memory), (IntPtr) length));
 		}
 
-		public string GetNamespace()
+		public override string ToString()
 		{
-			IntPtr native = g_typelib_get_namespace(handle);
-			return GLib.Marshaller.Utf8PtrToString(native);
+			return String.Format("<Typelib: {0}>", Namespace);
+		}
+		
+		public string Namespace {
+			get { return GLib.Marshaller.Utf8PtrToString(g_typelib_get_namespace(handle)); }
 		}
 
 		public bool Symbol(string symbol_name, out IntPtr symbol)

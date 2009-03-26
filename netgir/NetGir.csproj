@@ -8,6 +8,7 @@
     <ProjectGuid>{CD15EE6A-766E-4A9B-A0C4-740F8B46025E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AssemblyName>NetGir</AssemblyName>
+    <RootNamespace>NetGir</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,5 +53,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="Generator\AssemblyGenerator.cs" />
+    <Compile Include="Generator\ConstantGenerator.cs" />
   </ItemGroup>
 </Project>

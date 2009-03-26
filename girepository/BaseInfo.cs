@@ -56,7 +56,7 @@ namespace GIRepository
 		{
 			Type type;
 
-			if (!InfoTypeMappings.TryGetValue(g_base_info_get_type(raw), out type))
+			if (raw == IntPtr.Zero || !InfoTypeMappings.TryGetValue(g_base_info_get_type(raw), out type))
 				return null;
 
 			return (BaseInfo) GetOpaque(raw, type, owned);
@@ -64,6 +64,10 @@ namespace GIRepository
 
 		public string Name {
 			get { return GLib.Marshaller.Utf8PtrToString(g_base_info_get_name(Handle)); }
+		}
+
+		public Typelib Typelib {
+			get { return new Typelib(g_base_info_get_typelib(Handle)); }
 		}
 
 		[DllImport("libgirepository-1.0-0.dll")]
@@ -77,6 +81,9 @@ namespace GIRepository
 
 		[DllImport("libgirepository-1.0-0.dll")]
 		static extern IntPtr g_base_info_get_name(IntPtr raw);
+
+		[DllImport("libgirepository-1.0-0.dll")]
+		static extern IntPtr g_base_info_get_typelib(IntPtr raw);
 	}
 
 	public class UnresolvedInfo : BaseInfo { public UnresolvedInfo(IntPtr raw) : base(raw) { } }
@@ -93,7 +100,6 @@ namespace GIRepository
 	public class StructInfo : RegisteredTypeInfo { public StructInfo(IntPtr raw) : base(raw) { } }
 	public class EnumInfo : RegisteredTypeInfo { public EnumInfo(IntPtr raw) : base(raw) { } }
 	public class FlagsInfo : RegisteredTypeInfo { public FlagsInfo(IntPtr raw) : base(raw) { } }
-	public class ObjectInfo : RegisteredTypeInfo { public ObjectInfo(IntPtr raw) : base(raw) { } }
 	public class BoxedInfo : RegisteredTypeInfo { public BoxedInfo(IntPtr raw) : base(raw) { } }
 	public class ErrorDomainInfo : RegisteredTypeInfo { public ErrorDomainInfo(IntPtr raw) : base(raw) { } }
 	public class InterfaceInfo : RegisteredTypeInfo { public InterfaceInfo(IntPtr raw) : base(raw) { } }

@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{45104506-3643-47C7-A154-714F94091F57}</ProjectGuid>
+    <ProjectGuid>{45104506-3643-47C7-A154-714F94091F32}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>GLib</AssemblyName>
-    <RootNamespace>GLib</RootNamespace>
+    <AssemblyName>GObject</AssemblyName>
+    <RootNamespace>GObject</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,9 +39,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Argv.cs" />
     <Compile Include="Boxed.cs" />
-    <Compile Include="CDeclCallbackAttribute.cs" />
     <Compile Include="ClassInitializerAttribute.cs" />
     <Compile Include="ConnectBeforeAttribute.cs" />
     <Compile Include="DefaultSignalHandlerAttribute.cs" />
@@ -58,7 +56,6 @@
     <Compile Include="GString.cs" />
     <Compile Include="GType.cs" />
     <Compile Include="GTypeAttribute.cs" />
-    <Compile Include="Idle.cs" />
     <Compile Include="IgnoreClassInitializersAttribute.cs" />
     <Compile Include="InitiallyUnowned.cs" />
     <Compile Include="IOChannel.cs" />
@@ -99,7 +96,7 @@
     <Compile Include="WeakObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="GLib.dll.config">
+    <None Include="GObject.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -110,4 +107,10 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\glib\GLib.csproj">
+      <Project>{45104506-3643-47C7-A154-714F94091F57}</Project>
+      <Name>GLib</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
