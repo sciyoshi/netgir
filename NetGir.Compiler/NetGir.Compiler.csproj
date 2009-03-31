@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DE2F5664-96D4-40C2-9299-22998C710D8A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>NetGir.Compiler</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnvironmentVariables>
+      <EnvironmentVariables />
+    </EnvironmentVariables>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GIRepository\GIRepository.csproj">
+      <Project>{D758FC7B-3985-4A40-A5DF-AE67206723AC}</Project>
+      <Name>GIRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetGir.Generator.Assembly\NetGir.Generator.Assembly.csproj">
+      <Project>{7087161F-8A5F-42F0-BD9D-E1AC4BEDA7BE}</Project>
+      <Name>NetGir.Generator.Assembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GObject\GObject.csproj">
+      <Project>{45104506-3643-47C7-A154-714F94091F32}</Project>
+      <Name>GObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties InternalTargetFrameworkVersion="3.5" />
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45104506-3643-47C7-A154-714F94091F32}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>GObject</AssemblyName>
+    <RootNamespace>GObject</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <EnvironmentVariables>
+      <EnvironmentVariables />
+    </EnvironmentVariables>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClassInitializerAttribute.cs" />
+    <Compile Include="ConnectBeforeAttribute.cs" />
+    <Compile Include="DefaultSignalHandlerAttribute.cs" />
+    <Compile Include="DelegateWrapper.cs" />
+    <Compile Include="DestroyNotify.cs" />
+    <Compile Include="EnumWrapper.cs" />
+    <Compile Include="ExceptionManager.cs" />
+    <Compile Include="GInterfaceAdapter.cs" />
+    <Compile Include="GInterfaceAttribute.cs" />
+    <Compile Include="GString.cs" />
+    <Compile Include="GType.cs" />
+    <Compile Include="GTypeAttribute.cs" />
+    <Compile Include="IgnoreClassInitializersAttribute.cs" />
+    <Compile Include="InitiallyUnowned.cs" />
+    <Compile Include="IWrapper.cs" />
+    <Compile Include="ManagedValue.cs" />
+    <Compile Include="Marshaller.cs" />
+    <Compile Include="MissingIntPtrCtorException.cs" />
+    <Compile Include="NotifyHandler.cs" />
+    <Compile Include="Object.cs" />
+    <Compile Include="ObjectManager.cs" />
+    <Compile Include="Opaque.cs" />
+    <Compile Include="ParamSpec.cs" />
+    <Compile Include="PropertyAttribute.cs" />
+    <Compile Include="Signal.cs" />
+    <Compile Include="SignalArgs.cs" />
+    <Compile Include="SignalAttribute.cs" />
+    <Compile Include="SignalCallback.cs" />
+    <Compile Include="SignalClosure.cs" />
+    <Compile Include="ToggleRef.cs" />
+    <Compile Include="TypeConverter.cs" />
+    <Compile Include="TypeFundamentals.cs" />
+    <Compile Include="TypeInitializerAttribute.cs" />
+    <Compile Include="UnwrappedObject.cs" />
+    <Compile Include="Value.cs" />
+    <Compile Include="ValueArray.cs" />
+    <Compile Include="WeakObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GObject.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties InternalTargetFrameworkVersion="3.5">
+        <Deployment.LinuxDeployData generatePcFile="false" />
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <ProjectReference Include="..\NetGir\NetGir.csproj">
+      <Project>{CD15EE6A-766E-4A9B-A0C4-740F8B46025E}</Project>
+      <Name>NetGir</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
