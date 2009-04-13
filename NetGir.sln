@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLib", "GLib\GLib.csproj", "{45104506-3643-47C7-A154-714F94091F57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLib", "src\GLib\GLib.csproj", "{45104506-3643-47C7-A154-714F94091F57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIRepository", "GIRepository\GIRepository.csproj", "{D758FC7B-3985-4A40-A5DF-AE67206723AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GIRepository", "src\GIRepository\GIRepository.csproj", "{D758FC7B-3985-4A40-A5DF-AE67206723AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir", "NetGir\NetGir.csproj", "{CD15EE6A-766E-4A9B-A0C4-740F8B46025E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir", "src\NetGir\NetGir.csproj", "{CD15EE6A-766E-4A9B-A0C4-740F8B46025E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GObject", "GObject\GObject.csproj", "{45104506-3643-47C7-A154-714F94091F32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GObject", "src\GObject\GObject.csproj", "{45104506-3643-47C7-A154-714F94091F32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir.Generator.Assembly", "NetGir.Generator.Assembly\NetGir.Generator.Assembly.csproj", "{7087161F-8A5F-42F0-BD9D-E1AC4BEDA7BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir.Generator.Assembly", "src\NetGir\Generator\Assembly\NetGir.Generator.Assembly.csproj", "{7087161F-8A5F-42F0-BD9D-E1AC4BEDA7BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir.Compiler", "NetGir.Compiler\NetGir.Compiler.csproj", "{DE2F5664-96D4-40C2-9299-22998C710D8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir.Compiler", "src\NetGir\Compiler\NetGir.Compiler.csproj", "{DE2F5664-96D4-40C2-9299-22998C710D8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetGir.Generator.Repository", "src\NetGir\Generator\Repository\NetGir.Generator.Repository.csproj", "{15195D26-4062-4753-AB97-E3748A7C18D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15195D26-4062-4753-AB97-E3748A7C18D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15195D26-4062-4753-AB97-E3748A7C18D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15195D26-4062-4753-AB97-E3748A7C18D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15195D26-4062-4753-AB97-E3748A7C18D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45104506-3643-47C7-A154-714F94091F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45104506-3643-47C7-A154-714F94091F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45104506-3643-47C7-A154-714F94091F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,7 +51,6 @@ Global
 		{DE2F5664-96D4-40C2-9299-22998C710D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		name = NetGir
 		version = 0.1
 		StartupItem = GLib\GLib.csproj
 		Policies = $0
@@ -58,5 +63,7 @@ Global
 		$2.TabsToSpaces = False
 		$2.NoTabsAfterNonTabs = True
 		$2.RemoveTrailingWhitespace = True
+		$2.EolMarker = Native
+		name = NetGir
 	EndGlobalSection
 EndGlobal

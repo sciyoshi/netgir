@@ -5,34 +5,39 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CD15EE6A-766E-4A9B-A0C4-740F8B46025E}</ProjectGuid>
+    <ProjectGuid>{7087161F-8A5F-42F0-BD9D-E1AC4BEDA7BE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>NetGir</AssemblyName>
-    <RootNamespace>NetGir</RootNamespace>
+    <AssemblyName>NetGir.Generator</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug</OutputPath>
+    <OutputPath>..\..\..\..\bin\Debug</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnvironmentVariables>
-      <EnvironmentVariables />
-    </EnvironmentVariables>
-    <StartupObject />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\bin\Release</OutputPath>
+    <OutputPath>..\..\..\..\bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <ProjectReference Include="..\GIRepository\GIRepository.csproj">
+      <Project>{D758FC7B-3985-4A40-A5DF-AE67206723AC}</Project>
+      <Name>GIRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GObject\GObject.csproj">
+      <Project>{45104506-3643-47C7-A154-714F94091F32}</Project>
+      <Name>GObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyGenerator.cs" />
+    <Compile Include="ConstantGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -40,8 +45,4 @@
       <Properties InternalTargetFrameworkVersion="3.5" />
     </MonoDevelop>
   </ProjectExtensions>
-  <ItemGroup>
-    <Compile Include="CDeclCallbackAttribute.cs" />
-  </ItemGroup>
-  <ItemGroup />
 </Project>
